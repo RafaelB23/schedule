@@ -1,11 +1,21 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
+import { Button, ButtonGroup } from "@mui/material";
 import "./App.css";
-import ButtonUsage from "./components/defaultPage.js";
+// import ButtonUsage from "./components/defaultPage.js";
+import { MaestrosPage } from "./pages/MaestrosPage";
+import { MateriasPage } from "./pages/MateriasPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <MaestrosPage />
+      <MateriasPage />
+      <div className="conteiner py-16 align-content-end">
+        <ButtonGroup>
+          <Button variant="contained" color="primary" >Enviar</Button>
+        </ButtonGroup>
+      </div>
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -20,7 +30,7 @@ function App() {
         </a>
         <p>Training...</p>
         <ButtonUsage />
-      </header>
+      </header> */}
     </div>
   );
 }
