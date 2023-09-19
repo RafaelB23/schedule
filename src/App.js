@@ -4,6 +4,7 @@ import "./App.css";
 // import ButtonUsage from "./components/defaultPage.js";
 import { MaestrosPage } from "./pages/MaestrosPage";
 import { MateriasPage } from "./pages/MateriasPage";
+import SchoolSchedule from "./components/ScheduleComponent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Button variant="contained" color="primary" >Enviar</Button>
         </ButtonGroup>
       </div>
+      <SchoolSchedule/>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
