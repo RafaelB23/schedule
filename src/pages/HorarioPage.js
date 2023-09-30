@@ -1,27 +1,27 @@
 import * as React from "react";
-import MateriaForm from "../components/MateriaForm";
+import SchoolSchedule from "../components/ScheduleComponent";
 import { Button, ButtonGroup } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export function MateriasPage() {
+export function HorarioPage() {
   const navigate = useNavigate();
 
   const action = () => {
     // Redirige a la ruta deseada
     navigate("/form-horario");
+    console.log('Enviando...');
   };
   return (
-    <div className="text-center">
-      <h1 className="text-3xl font-bold p-10">Materia</h1>
+    <div className="text-center mb-12">
       <div className="container mx-auto px-4">
-        <MateriaForm></MateriaForm>
+        <SchoolSchedule />
         <ButtonGroup className="mt-8">
           <Button
             variant="contained"
             size="large"
             onClick={action}
           >
-            Siguente
+            Enviar
           </Button>
         </ButtonGroup>
       </div>
