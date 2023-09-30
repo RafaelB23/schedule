@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button'
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ScheduleTable from "./ScheduleTable";
 
 const SchoolSchedule = () => {
   const [selectedCells, setSelectedCells] = useState({});
   const [selectedColor, setSelectedColor] = useState(null);
+  const [valueCsv, setValueCsv] = useState('');
 
   const handleCellClick = (x, y) => {
     const cellKey = `${x}${y}`;
@@ -20,6 +23,75 @@ const SchoolSchedule = () => {
 
     setSelectedCells(newSelectedCells);
   };
+
+  const generateCSV = () => {
+    const schedule = selectedCells
+    console.log(selectedCells)
+      // Mapeo de días de la semana a números
+    const dayToNumber = {
+      "Lunes": 1,
+      "Martes": 2,
+      "Miércoles": 3,
+      "Jueves": 4,
+      "Viernes": 5,
+      "Sábado": 6,
+    };
+
+    // Mapeo de horas a números
+    const hourToNumber = {
+      "M1": 1,
+      "M2": 2,
+      "M3": 3,
+      "M4": 4,
+      "M5": 5,
+      "M6": 6,
+      "V1": 7,
+      "V2": 8,
+      "V3": 9,
+      "V4": 10,
+      "V5": 11,
+      "V6": 12,
+      "N1": 13,
+      "N2": 14,
+      "N3": 15,
+      "N4": 16,
+      "N5": 17,
+      "N6": 18,
+    };
+
+    // Crear una matriz de objetos para ordenar los valores
+    const orderedSchedule = [];
+
+    // Convertir el objeto de horario en una matriz de objetos
+    for (const key in schedule) {
+      if (schedule.hasOwnProperty(key)) {
+        const dayHour = key.split(/(?=[A-Z])/);
+        const day = dayHour[0];
+        const hour = dayHour[1];
+        const value = schedule[key];
+        const dayNumber = dayToNumber[day];
+        const hourNumber = hourToNumber[hour];
+        orderedSchedule.push({ dayNumber, hourNumber, value });
+      }
+    }
+
+    // Ordenar la matriz por día y hora
+    orderedSchedule.sort((a, b) => {
+      if (a.dayNumber === b.dayNumber) {
+        return a.hourNumber - b.hourNumber;
+      }
+      return a.dayNumber - b.dayNumber;
+    });
+
+    // Crear el CSV ordenado
+    let csv = "Dia,Hora,Valor\n";
+    orderedSchedule.forEach((item) => {
+      csv += `${item.dayNumber},${item.hourNumber},${item.value}\n`;
+    });
+    console.log(csv)
+    setValueCsv(csv)
+    return csv;
+  }
 
   const renderColorSelector = () => {
     const colors = [
@@ -125,6 +197,9 @@ const SchoolSchedule = () => {
             ))}
           </tbody>
         </table>
+        <Button onClick={generateCSV}>Generar CSV</Button>
+        <ScheduleTable data={valueCsv} />
+        {/* <p>{valueCsv}</p> */}
       </div>
     );
   };
