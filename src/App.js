@@ -8,6 +8,8 @@ import { HomePage } from "./pages/HomePage";
 import { HorarioPage } from "./pages/HorarioPage";
 // Styles
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+//Context
+import Providers from './contexts/Context'
 
 const theme = createTheme({
   palette: {
@@ -20,13 +22,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Routes className="App">
-          <Route exact path="/" element={<HomePage />} />{" "}
-          {/* Usar element para renderizar el componente */}
-          <Route path="/form-profesores" element={<MaestrosPage />} />
-          <Route path="/form-materias" element={<MateriasPage />} />
-          <Route path="/form-horario" element={<HorarioPage />} />
-          {/* <MaestrosPage />
+        <Providers>
+          <Routes className="App">
+            <Route exact path="/" element={<HomePage />} />{" "}
+            {/* Usar element para renderizar el componente */}
+            <Route path="/form-profesores" element={<MaestrosPage />} />
+            <Route path="/form-materias" element={<MateriasPage />} />
+            <Route path="/form-horario" element={<HorarioPage />} />
+            {/* <MaestrosPage />
         <MateriasPage />
         <div className="conteiner py-16 align-content-end">
           <ButtonGroup>
@@ -36,7 +39,8 @@ function App() {
           </ButtonGroup>
         </div>
         <SchoolSchedule /> */}
-        </Routes>
+          </Routes>
+        </Providers>
       </Router>
     </ThemeProvider>
   );

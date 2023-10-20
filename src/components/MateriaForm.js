@@ -1,51 +1,95 @@
 import {
-    FormControl,
-    FormGroup,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-  } from "@mui/material";
+  FormControl,
+  FormGroup,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  ButtonGroup,
+  Button
+} from "@mui/material";
 import * as React from "react";
-
+import { useState } from "react";
+import { useMateriaContext } from '../contexts/materiaContext'
 const idioma = ""
 const modalidad = ""
 
-export default function MateriaForm() {
+
+export default function MateriaForm({ onDataReciver }) {
+  const [idioma, setIdioma] = useState("")
+  const [modalidad, setModalidad] = useState("")
+
+  const context = useMateriaContext()
+
+  //Form
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formData, setFormData] = useState({})
+
+  const handleInput = (e) => {
+    const { name, value } = e.target
+    if (name == 'idioma') {
+      setIdioma(value)
+    }
+    if (name == 'modalidad') {
+      setModalidad(value)
+    }
+    setFormData({ ...formData, [name]: value });
+
+  }
+
+  const handleButton = () => {
+    if(formData){    
+      onDataReciver(formData)
+    }
+    setFormSubmitted(true)
+  }
   return (
     <div className="gap-6">
       <FormGroup className="space-y-6 text-left">
         <div className="w-full">
           <TextField
+            name="claveMateria"
             className="w-full sm:w-2/5 lg:w-48"
-            type="number"
+            type="text"
             label="Clave"
+            onChange={handleInput}
+            error = {formSubmitted && formData.claveMateria}
+            helperText={formSubmitted && !formData.claveMateria ? "Campo requerido.":""}
           ></TextField>
           {/* <p>Introduce la clave de la materia</p> */}
         </div>
-
-        <TextField label="Unidad de aprendizaje"></TextField>
+        <TextField
+          name="nameMateria"
+          label="Unidad de aprendizaje"
+          onChange={handleInput}
+          error = {formSubmitted && formData.nameMateria}
+          helperText={formSubmitted && !formData.nameMateria ? "Campo requerido.":""}
+        ></TextField>
         <div className="grid grid-cols-2 gap-6">
-        <FormControl>
+          <FormControl error = {formSubmitted && formData.idioma}>
             <InputLabel id="select-label">Idioma</InputLabel>
             <Select
+              name="idioma"
               labelId="select-label"
+              label="Idioma"
               id="simple-select"
               value={idioma}
-              label="Idioma"
+              onChange={handleInput}
             >
               <MenuItem value={"es"}>Español</MenuItem>
               <MenuItem value={"en"}>Ingles</MenuItem>
               <MenuItem value={"ds"}>Aleman</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl error = {formSubmitted && formData.modalidad}>
             <InputLabel id="select-label-mod">Modalidad</InputLabel>
             <Select
+              name="modalidad"
               labelId="select-label-mod"
               id="simple-select-mod"
-              value={modalidad}
               label="Modalidad"
+              value={modalidad}
+              onChange={handleInput}
             >
               <MenuItem value={1}>Presencial</MenuItem>
               <MenuItem value={2}>En Linea</MenuItem>
@@ -53,9 +97,16 @@ export default function MateriaForm() {
             </Select>
           </FormControl>
         </div>
-        {/* <TextField label="Idioma"></TextField>
-        <TextField label="Modalidad"></TextField> */}
       </FormGroup>
+      <ButtonGroup className="mt-8">
+        <Button
+          variant="contained"
+          size="large"
+          onClick={handleButton}
+        >
+          Siguente
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }
