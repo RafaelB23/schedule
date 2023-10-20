@@ -19,8 +19,8 @@ export function MateriasPage() {
 
   const handleForm = (data) => {
     contextMateria.updateFormMateria(data)
+    navigate("/form-horario");
     // Redirige a la ruta deseada
-    // navigate("/form-horario");
   };
   return (
     <div className="text-center">

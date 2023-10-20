@@ -1,10 +1,14 @@
 import * as React from "react";
 import SchoolSchedule from "../components/ScheduleComponent";
-import { Button, ButtonGroup } from "@mui/material";
+import { Box, Button, ButtonGroup, Card, CardContent, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import {useMaestroContext} from "../contexts/maestroContext"
+import {useMateriaContext} from "../contexts/materiaContext"
 
 export function HorarioPage() {
   const navigate = useNavigate();
+  const contextMaestro = useMaestroContext()
+  const contextMateria = useMateriaContext()
 
   const action = () => {
     // Redirige a la ruta deseada
@@ -24,6 +28,18 @@ export function HorarioPage() {
             Enviar
           </Button>
         </ButtonGroup>
+        <Card className="m-6">
+            <Box>
+              <CardContent>
+                <Typography variant="subtitle1" color="text.secondary" component="div">
+                  {JSON.stringify(contextMaestro.formMaestro)}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary" component="div">
+                  {JSON.stringify(contextMateria.formMateria)}
+                </Typography>
+              </CardContent>
+            </Box>
+          </Card>
       </div>
     </div>
   );
