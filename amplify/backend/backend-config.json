@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "schedulefime": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_schedulefime_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "schedulefime"
+        }
+      ]
+    },
+    "AMPLIFY_auth_schedulefime_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "schedulefime"
+        }
+      ]
+    },
+    "AMPLIFY_auth_schedulefime_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "schedulefime"
+        }
+      ]
+    },
+    "AMPLIFY_auth_schedulefime_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "schedulefime"
+        }
+      ]
+    }
+  }
+}

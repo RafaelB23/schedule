@@ -10,24 +10,21 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import {useMaestroContext} from "../contexts/maestroContext"
 
 export default function MaestrosForm({onDataReciver}) {
   const [idioma, setIdioma] = useState("")
   const [nivel, setNivel] = useState("")
   const [formSubmitted, setFormSubmitted] = useState(false)
 
-  const context = useMaestroContext()
-
   //Form
   const [formData, setFormData] = useState({})
 
   const handleInput = (e) => {
     const { name, value } = e.target
-    if (name == 'lenguage') {
+    if (name === 'lenguage') {
       setIdioma(value)
     }
-    if (name == 'level') {
+    if (name === 'level') {
       setNivel(value)
     }
     setFormData({ ...formData, [name]: value });

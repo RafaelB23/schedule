@@ -1,0 +1,25 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify202cf6e8a5604-staging-34839-authRole",
+      "UnauthRoleArn": "arn:aws:iam::514162651045:role/amplify-amplify202cf6e8a5604-staging-34839-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::514162651045:role/amplify-amplify202cf6e8a5604-staging-34839-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify202cf6e8a5604-staging-34839-deployment",
+      "UnauthRoleName": "amplify-amplify202cf6e8a5604-staging-34839-unauthRole",
+      "StackName": "amplify-amplify202cf6e8a5604-staging-34839",
+      "StackId": "arn:aws:cloudformation:us-east-1:514162651045:stack/amplify-amplify202cf6e8a5604-staging-34839/e190e760-7544-11ee-9dba-0a8cc8faf0d1",
+      "AmplifyAppId": "d1pnax80ekojqq"
+    },
+    "categories": {
+      "auth": {
+        "schedulefime": {
+          "userPoolId": "us-east-1_Gj5UkX5cs",
+          "userPoolName": "profesores_dev",
+          "webClientId": "2d1ing73tpb2gvlu33f90q2sse",
+          "nativeClientId": "2d1ing73tpb2gvlu33f90q2sse"
+        }
+      }
+    }
+  }
+}
