@@ -11,13 +11,18 @@ import {
 import * as React from "react";
 import { useState } from "react";
 
-export default function MaestrosForm({onDataReciver}) {
+export default function MaestrosForm({onDataReciver, user}) {
   const [idioma, setIdioma] = useState("")
   const [nivel, setNivel] = useState("")
   const [formSubmitted, setFormSubmitted] = useState(false)
 
   //Form
-  const [formData, setFormData] = useState({})
+  const dummyForm = {
+    noProfesor: user.username,
+    nameProfesor: `${user.attributes['custom:nombres']} ${user.attributes['custom:apellido_1']} ${user.attributes['custom:apellido_2']}`,
+  };
+  
+  const [formData, setFormData] = useState(dummyForm)
 
   const handleInput = (e) => {
     const { name, value } = e.target
@@ -47,16 +52,20 @@ export default function MaestrosForm({onDataReciver}) {
           type="number"
           label="No. Empleado"
           onChange={handleInput}
+          value={formData.noProfesor}
           error = {formSubmitted && !formData.noProfesor}
           helperText={formSubmitted && !formData.noProfesor ? "Campo requerido.":""}
+          disabled={user.username ? true : false}
         ></TextField>
         <TextField
           name="nameProfesor"
           type="text"
           label="Nombre del profesor"
           onChange={handleInput}
+          value={formData.nameProfesor}
           error = {formSubmitted && !formData.nameProfesor}
           helperText={formSubmitted && !formData.nameProfesor ? "Campo requerido.":""}
+          disabled={user.attributes['custom:nombres'] && user.attributes['custom:apellido_1'] && user.attributes['custom:apellido_2'] ? true : false}
         ></TextField>
         <div className="grid grid-cols-2 gap-6">
           {/* <TextField label="Nivel"></TextField> */}

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button, ButtonGroup } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Card, CardContent, Box } from '@mui/material';
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
 
@@ -17,9 +17,9 @@ export function HomePage() {
 
   const { user, route } = useAuthenticator((context) => [context.user, context.route])
   useEffect(() => {
-    if (route === 'authenticated'){
+    if (route === 'authenticated') {
       setAttributes(user.attributes)
-    }else{
+    } else {
       navigate('/auth')
     }
   }, [user, route, navigate])
@@ -38,9 +38,12 @@ export function HomePage() {
           </Button>
         </ButtonGroup>
         {/* Temporal */}
-        <Card className="mx-8 mt-24 text-base"> 
+        <Card className="mx-8 mt-24 text-base">
           <Box>
             <CardContent>
+              <p key='username'>
+                <strong>username:</strong> {user.username}
+              </p>
               {Object.keys(attributes).map((key) => (
                 <p key={key}>
                   <strong>{key}:</strong> {attributes[key].toString()}
