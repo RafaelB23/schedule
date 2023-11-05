@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useMaestroContext } from "../contexts/maestroContext"
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect } from "react";
-import { useState } from "react";
 
 export function MaestrosPage() {
   const navigate = useNavigate();
@@ -18,17 +17,11 @@ export function MaestrosPage() {
   }
 
   const { user, route } = useAuthenticator((context) => [context.user, context.route])
-  const [attributes, setAttributes] = useState('')
-  const [username, setUsername] = useState(user.username)
   useEffect(() => {
-    if (route === 'authenticated') {
-      setAttributes(user.attributes)
-      setUsername(user.username)
-      console.log('attributes', attributes['custom:apellido_2'])
-    } else {
+    if (!route === 'authenticated') {
       navigate('/auth')
-    }
-  }, [user, navigate, route, attributes])
+    } 
+  }, [user, navigate, route])
 
   return (
     <div className="flex items-center justify-center min-h-full">
@@ -39,12 +32,6 @@ export function MaestrosPage() {
             <MaestrosForm
               onDataReciver={handleForm}
               user= {user} />
-              {/* <MaestrosForm
-              onDataReciver={handleForm}
-              user= {username}
-              names= {attributes['custom:nombres']}
-              apell_1 = {attributes['custom:apellido_1']}
-              apell_2 = {attributes['custom:apellido_2']} /> */}
             <div className="mt-6">
               <CardContent>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
