@@ -42,7 +42,7 @@ export function HomePage() {
           <Box>
             <CardContent>
               <p key='username'>
-                <strong>username:</strong> {user.username}
+                <strong>username:</strong> {user?.username}
               </p>
               {Object.keys(attributes).map((key) => (
                 <p key={key}>
