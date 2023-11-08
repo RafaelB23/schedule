@@ -1,0 +1,5 @@
+formulario del profesor desde el inicio??
+
+mandar el JSON del horario al backend
+
+fix flow
