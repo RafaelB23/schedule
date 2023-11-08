@@ -19,6 +19,9 @@
           "webClientId": "2d1ing73tpb2gvlu33f90q2sse",
           "nativeClientId": "2d1ing73tpb2gvlu33f90q2sse"
         }
+      },
+      "api": {
+        "schedulefime": {}
       }
     }
   }

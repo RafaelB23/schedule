@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export default function NavBar() {
     const { user, signOut } = useAuthenticator((context) => [context.user]);
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     return (
         <AppBar position="static">
             <Toolbar>
@@ -23,7 +23,10 @@ export default function NavBar() {
                     <Button
                         component="label"
                         variant="text"
-                        onClick={() => {signOut()}}
+                        onClick={() => {
+                            signOut()
+                            navigate('/')
+                        }}
                         endIcon={<ExitToAppIcon />}
                         style={{ 
                             color: 'white',

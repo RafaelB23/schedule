@@ -4,10 +4,31 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ScheduleTable from "./ScheduleTable";
 
+const setValues = () => {
+  const xValues = [
+    "Lunes", "Martes", "Miércoles",
+    "Jueves", "Viernes", "Sábado",
+  ];
+
+  const yValues = [
+    "M1", "M2", "M3", "M4", "M5", "M6",
+    "V1", "V2", "V3", "V4", "V5", "V6",
+    "N1", "N2", "N3", "N4", "N5", "N6",
+  ];
+
+  return { xValues, yValues };
+};
 const SchoolSchedule = () => {
-  const [selectedCells, setSelectedCells] = useState({});
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [valueCsv, setValueCsv] = useState('');
+  const initialSelectedCells = {};
+  const { xValues, yValues } = setValues();
+  xValues.forEach((x) => {
+    yValues.forEach((y) => {
+      initialSelectedCells[`${x}${y}`] = "orange";
+    });
+  });
+  const [selectedCells, setSelectedCells] = useState(initialSelectedCells);
+  const [selectedColor, setSelectedColor] = useState('');
+  const [valueJson, setValueJson] = useState('');
 
   const handleCellClick = (x, y) => {
     const cellKey = `${x}${y}`;
@@ -24,10 +45,10 @@ const SchoolSchedule = () => {
     setSelectedCells(newSelectedCells);
   };
 
-  const generateCSV = () => {
-    const schedule = selectedCells
-    console.log(selectedCells)
-      // Mapeo de días de la semana a números
+  const generateJSON = () => {
+    const schedule = selectedCells;
+  
+    // Mapeo de días de la semana a números
     const dayToNumber = {
       "Lunes": 1,
       "Martes": 2,
@@ -36,7 +57,7 @@ const SchoolSchedule = () => {
       "Viernes": 5,
       "Sábado": 6,
     };
-
+  
     // Mapeo de horas a números
     const hourToNumber = {
       "M1": 1,
@@ -58,23 +79,29 @@ const SchoolSchedule = () => {
       "N5": 17,
       "N6": 18,
     };
-
+  
+    const colorsMap = {
+      "green": 1,
+      "orange": 0,
+      "red": -1,
+    };
+  
     // Crear una matriz de objetos para ordenar los valores
     const orderedSchedule = [];
-
+  
     // Convertir el objeto de horario en una matriz de objetos
     for (const key in schedule) {
       if (schedule.hasOwnProperty(key)) {
         const dayHour = key.split(/(?=[A-Z])/);
         const day = dayHour[0];
         const hour = dayHour[1];
-        const value = schedule[key];
+        const value = colorsMap[schedule[key]];
         const dayNumber = dayToNumber[day];
         const hourNumber = hourToNumber[hour];
         orderedSchedule.push({ dayNumber, hourNumber, value });
       }
     }
-
+  
     // Ordenar la matriz por día y hora
     orderedSchedule.sort((a, b) => {
       if (a.dayNumber === b.dayNumber) {
@@ -82,16 +109,19 @@ const SchoolSchedule = () => {
       }
       return a.dayNumber - b.dayNumber;
     });
-
-    // Crear el CSV ordenado
-    let csv = "Dia,Hora,Valor\n";
-    orderedSchedule.forEach((item) => {
-      csv += `${item.dayNumber},${item.hourNumber},${item.value}\n`;
-    });
-    console.log(csv)
-    setValueCsv(csv)
-    return csv;
-  }
+  
+    // Crear el objeto JSON ordenado
+    const jsonData = orderedSchedule.map((item) => ({
+      Dia: item.dayNumber,
+      Hora: item.hourNumber,
+      Valor: item.value,
+    }));
+    console.log(jsonData);
+  
+    // Actualiza el estado o realiza cualquier otra acción con el objeto JSON
+    setValueJson(jsonData);
+    return jsonData;
+  };
 
   const renderColorSelector = () => {
     const colors = [
@@ -132,34 +162,7 @@ const SchoolSchedule = () => {
   };
 
   const renderSchedule = () => {
-    const xValues = [
-      "Lunes",
-      "Martes",
-      "Miércoles",
-      "Jueves",
-      "Viernes",
-      "Sábado",
-    ]; // Días en español
-    const yValues = [
-      "M1",
-      "M2",
-      "M3",
-      "M4",
-      "M5",
-      "M6",
-      "V1",
-      "V2",
-      "V3",
-      "V4",
-      "V5",
-      "V6",
-      "N1",
-      "N2",
-      "N3",
-      "N4",
-      "N5",
-      "N6",
-    ]; // Letras mayúsculas
+    const { xValues, yValues } = setValues();
 
     return (
       <div>
@@ -197,8 +200,8 @@ const SchoolSchedule = () => {
             ))}
           </tbody>
         </table>
-        <Button onClick={generateCSV}>Generar CSV</Button>
-        <ScheduleTable data={valueCsv} />
+        <Button onClick={generateJSON}>Generar Tabla</Button>
+        <ScheduleTable data={valueJson} />
         {/* <p>{valueCsv}</p> */}
       </div>
     );

@@ -8,27 +8,30 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function CSVtoTable(csv) {
-  const rows = csv.split("\n");
+function JSONtoTable(jsonData) {
+  // Verifica si el JSON está vacío o nulo
+  if (!jsonData || jsonData.length === 0) {
+    return <div>No hay datos para mostrar.</div>;
+  }
 
-  // Crea una matriz de filas y columnas
-  const tableData = rows.map((row) => row.split(","));
+  // Obtén las cabeceras de la tabla desde la primera fila del JSON
+  const headers = Object.keys(jsonData[0]);
 
   return (
     <TableContainer component={Paper} elevation={6}>
       <Table sx={{ minWidth: 650 }} size="small">
         <TableHead>
           <TableRow>
-            {tableData[0].map((header, index) => (
-              <TableCell key={index} sx={{ fontWeight: 'bold' }}>{header.trim()}</TableCell>
+            {headers.map((header, index) => (
+              <TableCell key={index} sx={{ fontWeight: 'bold' }}>{header}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData.slice(1).map((rowData, rowIndex) => (
+          {jsonData.map((rowData, rowIndex) => (
             <TableRow key={rowIndex}>
-              {rowData.map((cell, cellIndex) => (
-                <TableCell key={cellIndex}>{cell.trim()}</TableCell>
+              {headers.map((header, cellIndex) => (
+                <TableCell key={cellIndex}>{rowData[header]}</TableCell>
               ))}
             </TableRow>
           ))}
@@ -39,8 +42,8 @@ function CSVtoTable(csv) {
 }
 
 function ScheduleTable({ data }) {
-  // Convierte la cadena CSV en una tabla React
-  const tableElement = CSVtoTable(data);
+  // Convierte el objeto JSON en una tabla React
+  const tableElement = JSONtoTable(data);
 
   return <div className="table-container">{tableElement}</div>;
 }
