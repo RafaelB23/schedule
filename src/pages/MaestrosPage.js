@@ -1,9 +1,10 @@
 import * as React from "react";
 import MaestrosForm from "../components/MaestrosForm";
-import { Button, Card, CardContent, Box, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useMaestroContext } from "../contexts/maestroContext"
-import { useState } from "react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useEffect } from "react";
 
 export function MaestrosPage() {
   const navigate = useNavigate();
@@ -15,23 +16,32 @@ export function MaestrosPage() {
     navigate("/form-materias");
   }
 
+  const { user, route } = useAuthenticator((context) => [context.user, context.route])
+  useEffect(() => {
+    if (!route === 'authenticated') {
+      navigate('/auth')
+    } 
+  }, [user, navigate, route])
+
   return (
-    <div className="text-center">
-      <h1 className="text-3xl font-bold p-10">Profesor</h1>
-      <div className="container mx-auto px-4">
-        <MaestrosForm onDataReciver={handleForm} />
-        <div className="mt-6">
-          <Card>
-            <Box>
+    <div className="flex items-center justify-center min-h-full">
+      <Card variant="outlined" className="w-full md:w-1/2 p-4 mt-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold p-10">Profesor</h1>
+          <div className="container mx-auto px-4">
+            <MaestrosForm
+              onDataReciver={handleForm}
+              user= {user} />
+            <div className="mt-6">
               <CardContent>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
                   {JSON.stringify(context.formMaestro)}
                 </Typography>
               </CardContent>
-            </Box>
-          </Card>
+            </div>
+          </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -11,16 +11,12 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import { useMateriaContext } from '../contexts/materiaContext'
-const idioma = ""
-const modalidad = ""
+
 
 
 export default function MateriaForm({ onDataReciver }) {
   const [idioma, setIdioma] = useState("")
   const [modalidad, setModalidad] = useState("")
-
-  const context = useMateriaContext()
 
   //Form
   const [formSubmitted, setFormSubmitted] = useState(false)
@@ -28,10 +24,10 @@ export default function MateriaForm({ onDataReciver }) {
 
   const handleInput = (e) => {
     const { name, value } = e.target
-    if (name == 'idioma') {
+    if (name === 'idioma') {
       setIdioma(value)
     }
-    if (name == 'modalidad') {
+    if (name === 'modalidad') {
       setModalidad(value)
     }
     setFormData({ ...formData, [name]: value });
