@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export default function NavBar() {
     const { user, signOut } = useAuthenticator((context) => [context.user]);
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     return (
         <AppBar position="static">
             <Toolbar>
@@ -25,7 +25,10 @@ export default function NavBar() {
                         variant="text"
                         onClick={() => {signOut()}}
                         endIcon={<ExitToAppIcon />}
-                        style={{ color: 'white' }} // Agrega el estilo para el color del texto
+                        style={{ 
+                            color: 'white',
+                            textTransform: 'none' 
+                        }} // Agrega el estilo para el color del texto
                     >
                         Cerrar Sesión
                     </Button>

@@ -1,11 +1,10 @@
 import * as React from "react";
 import MaestrosForm from "../components/MaestrosForm";
-import { Card, CardContent, Box, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useMaestroContext } from "../contexts/maestroContext"
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect } from "react";
-import { useState } from "react";
 
 export function MaestrosPage() {
   const navigate = useNavigate();
@@ -18,13 +17,10 @@ export function MaestrosPage() {
   }
 
   const { user, route } = useAuthenticator((context) => [context.user, context.route])
-  const [attributes, setAttributes] = useState('')
   useEffect(() => {
-    if (route === 'authenticated'){
-      setAttributes(user.attributes)
-    }else{
+    if (!route === 'authenticated') {
       navigate('/auth')
-    }
+    } 
   }, [user, navigate, route])
 
   return (
@@ -33,7 +29,9 @@ export function MaestrosPage() {
         <div className="text-center">
           <h1 className="text-3xl font-bold p-10">Profesor</h1>
           <div className="container mx-auto px-4">
-            <MaestrosForm onDataReciver={handleForm} />
+            <MaestrosForm
+              onDataReciver={handleForm}
+              user= {user} />
             <div className="mt-6">
               <CardContent>
                 <Typography variant="subtitle1" color="text.secondary" component="div">

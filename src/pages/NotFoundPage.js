@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import { blue } from '@mui/material/colors';
 import * as React from 'react'
 import { Link } from 'react-router-dom'
@@ -12,8 +12,13 @@ export default function NotFoundPage() {
             <div className="mt-2">
                 <Button color="inherit"
                     component={Link} to="/"
-                    className="text-blue-500 font-normal text-2xl uppercase-normal">
-                    Regresar a inicio
+                    style={{
+                        color: blue[500],
+                        fontWeight: 'normal',
+                        fontSize: '24px',
+                        textTransform: 'none'
+                    }}>
+                        Regresar a inicio
                 </Button>
             </div>
         </div>
