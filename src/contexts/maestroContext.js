@@ -13,8 +13,12 @@ export function MaestroContextProvider({ children }) {
         setFormMaestro({ ...formMaestro, ...newData });
     };
 
+    const cleanFormMaestro = () => {
+        setFormMaestro({});
+    };
+
     return (
-        <maestroContext.Provider value={{ formMaestro, updateFormMaestro }}>
+        <maestroContext.Provider value={{ formMaestro, updateFormMaestro, cleanFormMaestro }}>
             {children}
         </maestroContext.Provider>
     );

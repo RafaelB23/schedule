@@ -14,7 +14,7 @@ import { useState } from "react";
 
 
 
-export default function MateriaForm({ onDataReciver }) {
+export default function MateriaForm({ onDataReciver, isLoading }) {
   const [idioma, setIdioma] = useState("")
   const [modalidad, setModalidad] = useState("")
 
@@ -35,7 +35,7 @@ export default function MateriaForm({ onDataReciver }) {
   }
 
   const handleButton = () => {
-    if(formData.claveMateria && formData.nameMateria && formData.idioma && formData.modalidad){    
+    if (formData.claveMateria && formData.nameMateria && formData.idioma && formData.modalidad) {
       onDataReciver(formData)
     }
     setFormSubmitted(true)
@@ -50,8 +50,8 @@ export default function MateriaForm({ onDataReciver }) {
             type="text"
             label="Clave"
             onChange={handleInput}
-            error = {formSubmitted && !formData.claveMateria}
-            helperText={formSubmitted && !formData.claveMateria ? "Campo requerido.":""}
+            error={formSubmitted && !formData.claveMateria}
+            helperText={formSubmitted && !formData.claveMateria ? "Campo requerido." : ""}
           ></TextField>
           {/* <p>Introduce la clave de la materia</p> */}
         </div>
@@ -59,11 +59,11 @@ export default function MateriaForm({ onDataReciver }) {
           name="nameMateria"
           label="Unidad de aprendizaje"
           onChange={handleInput}
-          error = {formSubmitted && !formData.nameMateria}
-          helperText={formSubmitted && !formData.nameMateria ? "Campo requerido.":""}
+          error={formSubmitted && !formData.nameMateria}
+          helperText={formSubmitted && !formData.nameMateria ? "Campo requerido." : ""}
         ></TextField>
         <div className="grid grid-cols-2 gap-6">
-          <FormControl error = {formSubmitted && !formData.idioma}>
+          <FormControl error={formSubmitted && !formData.idioma}>
             <InputLabel id="select-label">Idioma</InputLabel>
             <Select
               name="idioma"
@@ -77,9 +77,9 @@ export default function MateriaForm({ onDataReciver }) {
               <MenuItem value={"en"}>Ingles</MenuItem>
               <MenuItem value={"ds"}>Aleman</MenuItem>
             </Select>
-            <FormHelperText>{formSubmitted && !formData.idioma ? "Campo requerido.":""}</FormHelperText>
+            <FormHelperText>{formSubmitted && !formData.idioma ? "Campo requerido." : ""}</FormHelperText>
           </FormControl>
-          <FormControl error = {formSubmitted && !formData.modalidad}>
+          <FormControl error={formSubmitted && !formData.modalidad}>
             <InputLabel id="select-label-mod">Modalidad</InputLabel>
             <Select
               name="modalidad"
@@ -93,17 +93,18 @@ export default function MateriaForm({ onDataReciver }) {
               <MenuItem value={2}>En Linea</MenuItem>
               <MenuItem value={3}>Hibrido</MenuItem>
             </Select>
-            <FormHelperText>{formSubmitted && !formData.modalidad ? "Campo requerido.":""}</FormHelperText>
+            <FormHelperText>{formSubmitted && !formData.modalidad ? "Campo requerido." : ""}</FormHelperText>
           </FormControl>
         </div>
       </FormGroup>
       <ButtonGroup className="mt-8">
         <Button
+          disabled={isLoading}
           variant="contained"
           size="large"
           onClick={handleButton}
         >
-          Siguente
+          {isLoading ? 'Enviando...' : 'Siguente'}
         </Button>
       </ButtonGroup>
     </div>

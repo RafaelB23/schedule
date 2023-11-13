@@ -8,7 +8,7 @@ export default function NotFoundPage() {
 
     return (
         <div className='App-header flex flex-col items-center'>
-            <img src={CloudError} alt="Cloud Offline Icon" className="w-1/2" />
+            <img src={CloudError} alt="Cloud Offline Icon" className="w-1/3" />
             <div className="mt-2">
                 <Button color="inherit"
                     component={Link} to="/"

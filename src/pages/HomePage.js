@@ -5,8 +5,11 @@ import { useEffect } from "react";
 import { Card, CardContent, Box } from '@mui/material';
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
+import { useMaestroContext } from "../contexts/maestroContext";
 
 export function HomePage() {
+  const maestroContext = useMaestroContext()
+  const [cleanedForm, setCleanedForm] = useState(false);
   const [attributes, setAttributes] = useState('')
   const navigate = useNavigate();
 
@@ -17,12 +20,16 @@ export function HomePage() {
 
   const { user, route } = useAuthenticator((context) => [context.user, context.route])
   useEffect(() => {
+    if (maestroContext.formMaestro && !cleanedForm) {
+      maestroContext.cleanFormMaestro();
+      setCleanedForm(true);
+    }
     if (route === 'authenticated') {
-      setAttributes(user.attributes)
+      setAttributes(user?.attributes)
     } else {
       navigate('/auth')
     }
-  }, [user, route, navigate])
+  }, [user, route, navigate, maestroContext, cleanedForm])
 
   return (
     <div className="App">
