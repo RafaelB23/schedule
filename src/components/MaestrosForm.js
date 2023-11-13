@@ -44,8 +44,8 @@ export default function MaestrosForm({ isLoading, onDataReciver, user }) {
   useEffect(() => {
     try {
       const dummyForm = {
-        noProfesor: user?.username || '', // Utiliza operador opcional
-        nameProfesor: `${user?.attributes['custom:nombres'] || ''} ${user?.attributes['custom:apellido_1'] || ''} ${user?.attributes['custom:apellido_2'] || ''}`, // Utiliza operador opcional
+        noProfesor: user?.username || '',
+        nameProfesor: `${user?.attributes['custom:nombres'] || ''} ${user?.attributes['custom:apellido_1'] || ''} ${user?.attributes['custom:apellido_2'] || ''}`,
       };
       setFormData(dummyForm)
     } catch (err) {

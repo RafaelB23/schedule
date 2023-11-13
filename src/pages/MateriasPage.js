@@ -23,11 +23,11 @@ export function MateriasPage() {
 
   const handleForm = async (data) => {
     setIsLoading(true)
-    contextMateria.updateFormMateria(data)
     try{
-      await fmateriaApi(data.claveMateria, data.nameMateria, data.idioma, data.modalidad)
-      navigate("/form-horario");
+      const res = await fmateriaApi(data.claveMateria, data.nameMateria, data.idioma, data.modalidad)
+      contextMateria.updateFormMateria(res.data.createMateria.id)
       setIsLoading(false)
+      navigate("/form-horario");
     }catch(err){
       setIsLoading(false)
       console.log(err)

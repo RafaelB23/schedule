@@ -9,31 +9,10 @@ export const createHorario = /* GraphQL */ `
     createHorario(input: $input, condition: $condition) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }
@@ -46,31 +25,10 @@ export const updateHorario = /* GraphQL */ `
     updateHorario(input: $input, condition: $condition) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }
@@ -83,31 +41,10 @@ export const deleteHorario = /* GraphQL */ `
     deleteHorario(input: $input, condition: $condition) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }

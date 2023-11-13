@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ScheduleTable from "./ScheduleTable";
+import { ButtonGroup } from "@mui/material";
 
 const setValues = () => {
   const xValues = [
@@ -18,7 +19,7 @@ const setValues = () => {
 
   return { xValues, yValues };
 };
-const SchoolSchedule = () => {
+const SchoolSchedule = ({ onDataReciver, isLoading }) => {
   const initialSelectedCells = {};
   const { xValues, yValues } = setValues();
   xValues.forEach((x) => {
@@ -120,7 +121,8 @@ const SchoolSchedule = () => {
   
     // Actualiza el estado o realiza cualquier otra acción con el objeto JSON
     setValueJson(jsonData);
-    return jsonData;
+    onDataReciver(jsonData)
+    // return jsonData;
   };
 
   const renderColorSelector = () => {
@@ -200,7 +202,17 @@ const SchoolSchedule = () => {
             ))}
           </tbody>
         </table>
-        <Button onClick={generateJSON}>Generar Tabla</Button>
+        {/* <Button onClick={onDataReciver}>Generar Tabla</Button> */}
+        <ButtonGroup className="mt-8">
+          <Button
+            disabled={isLoading}
+            variant="contained"
+            size="large"
+            onClick={generateJSON}
+          >
+            {isLoading ? 'Enviando...' : 'Enviar'}
+          </Button>
+        </ButtonGroup>
         <ScheduleTable data={valueJson} />
         {/* <p>{valueCsv}</p> */}
       </div>

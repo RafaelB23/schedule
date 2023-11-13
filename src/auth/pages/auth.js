@@ -147,7 +147,6 @@ export default function AuthComponent() {
                     loginMechanisms={['username']}
                     formFields={formFields}
                 >
-                    {/* <HomePage /> */}
                     <AuthController/>
                 </Authenticator>
             </ThemeProvider>

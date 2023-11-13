@@ -10,7 +10,7 @@ export function MateriaContextProvider({ children }) {
     const [formMateria, setFormMateria] = useState({}); // Aquí puedes inicializar tu estado de formulario
 
     const updateFormMateria = (newData) => {
-        setFormMateria({ ...formMateria, ...newData });
+        setFormMateria(newData);
     };
 
     return (

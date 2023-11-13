@@ -10,7 +10,7 @@ export function MaestroContextProvider({ children }) {
     const [formMaestro, setFormMaestro] = useState({}); // Aquí puedes inicializar tu estado de formulario
 
     const updateFormMaestro = (newData) => {
-        setFormMaestro({ ...formMaestro, ...newData });
+        setFormMaestro(newData);
     };
 
     const cleanFormMaestro = () => {

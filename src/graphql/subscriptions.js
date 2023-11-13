@@ -6,31 +6,10 @@ export const onCreateHorario = /* GraphQL */ `
     onCreateHorario(filter: $filter) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }
@@ -40,31 +19,10 @@ export const onUpdateHorario = /* GraphQL */ `
     onUpdateHorario(filter: $filter) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }
@@ -74,31 +32,10 @@ export const onDeleteHorario = /* GraphQL */ `
     onDeleteHorario(filter: $filter) {
       id
       schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
-        __typename
-      }
+      id_maestro
+      id_materia
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
       __typename
     }
   }

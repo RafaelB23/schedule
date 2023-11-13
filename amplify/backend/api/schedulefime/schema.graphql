@@ -1,8 +1,8 @@
 type Horario @model @auth(rules: [{allow: public}]) {
   id: ID!
   schedule: AWSJSON!
-  maestro: Maestro! @hasOne
-  materia: Materia! @hasOne
+  id_maestro: String!
+  id_materia: String!
 }
 
 type Materia @model @auth(rules: [{allow: public}]) {

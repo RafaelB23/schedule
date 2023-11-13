@@ -16,12 +16,12 @@ export function MaestrosPage() {
 
   const handleForm = async (data) => {
     setIsLoading(true)
-    context.updateFormMaestro(data)
     const [name, apell1, apell2] = data.nameProfesor.split(' ')
     try {
-      await fmaestroApi(name, apell1 + ' ' + apell2, data.level, data.lenguage, data.noProfesor)
-      navigate("/form-materias");
+      const res = await fmaestroApi(name, apell1 + ' ' + apell2, data.level, data.lenguage, data.noProfesor)
+      context.updateFormMaestro(res.data.createMaestro.id)
       setIsLoading(false)
+      navigate("/form-materias");
     }catch(err){
       setIsLoading(false)
       console.log(err)
