@@ -38,7 +38,7 @@ export function MateriasPage() {
   const { user } = useAuthenticator((context) => [context.user])
   const [attributes, setAttributes] = useState('')
   useEffect(() => {
-    user ? setAttributes(user.attributes) : navigate('/authentication')
+    user ? setAttributes(user.attributes) : navigate('/auth')
   }, [user, attributes, navigate])
   
   return (

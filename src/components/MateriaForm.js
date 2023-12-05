@@ -5,16 +5,18 @@ import {
   MenuItem,
   Select,
   TextField,
-  ButtonGroup,
+  // ButtonGroup,
   Button,
-  FormHelperText
+  DialogActions,
+  FormHelperText,
+  Typography
 } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 
 
 
-export default function MateriaForm({ onDataReciver, isLoading }) {
+export default function MateriaForm({ handleCloseDialog, handleFormSubmit, dialogState }) {
   const [idioma, setIdioma] = useState("")
   const [modalidad, setModalidad] = useState("")
 
@@ -31,17 +33,17 @@ export default function MateriaForm({ onDataReciver, isLoading }) {
       setModalidad(value)
     }
     setFormData({ ...formData, [name]: value });
-
   }
 
   const handleButton = () => {
     if (formData.claveMateria && formData.nameMateria && formData.idioma && formData.modalidad) {
-      onDataReciver(formData)
+      handleFormSubmit(formData)
     }
     setFormSubmitted(true)
   }
   return (
-    <div className="gap-6">
+    <div className="gap-6 ">
+      <Typography className="text-center pb-4" component={'div'} variant="h6">Materia</Typography>
       <FormGroup className="space-y-6 text-left">
         <div className="w-full">
           <TextField
@@ -97,16 +99,12 @@ export default function MateriaForm({ onDataReciver, isLoading }) {
           </FormControl>
         </div>
       </FormGroup>
-      <ButtonGroup className="mt-8">
-        <Button
-          disabled={isLoading}
-          variant="contained"
-          size="large"
-          onClick={handleButton}
-        >
-          {isLoading ? 'Enviando...' : 'Siguente'}
+      <DialogActions>
+        <Button onClick={handleCloseDialog}>Cancelar</Button>
+        <Button onClick={handleButton}>
+          {dialogState ? 'Guardar' : 'Siguiente'}
         </Button>
-      </ButtonGroup>
+      </DialogActions>
     </div>
   );
 }

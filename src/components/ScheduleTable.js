@@ -19,7 +19,7 @@ function JSONtoTable(jsonData) {
 
   return (
     <TableContainer component={Paper} elevation={6}>
-      <Table sx={{ minWidth: 650 }} size="small">
+      <Table sx={{ minwidth: 650 }} size="small">
         <TableHead>
           <TableRow>
             {headers.map((header, index) => (

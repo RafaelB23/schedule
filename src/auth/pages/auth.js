@@ -4,12 +4,12 @@ import {
     translations
 } from '@aws-amplify/ui-react'
 import * as React from 'react'
-import { HomePage } from '../../pages/HomePage'
+// import { HomePage } from '../../pages/HomePage'
 import '@aws-amplify/ui-react/styles.css';
 import { grey, blue } from '@mui/material/colors';
 import { I18n } from 'aws-amplify';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 import AuthController from './authController';
 
 I18n.putVocabularies(translations);
@@ -91,7 +91,7 @@ const formFields = {
 }
 
 export default function AuthComponent() {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const theme = {
         name: 'Auth Theme',
         tokens: {

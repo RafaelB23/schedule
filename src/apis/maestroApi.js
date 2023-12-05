@@ -1,18 +1,19 @@
-import { API } from "aws-amplify";
+import { API } from 'aws-amplify';
 import { createMaestro } from '../graphql/mutations';
 
-export default async function maestroApi(name, lastname, level, lenguage, key) {
+export default async function maestroApi(id, key, name, middle_name, last_name, email) {
     const newMaestro = await API.graphql({
         query: createMaestro,
         variables: {
             input: {
+                "id": id,
                 "name": name,
-                "lastName": lastname,
-                "level": level,
-                "lenguage": lenguage,
-                "maestro_key": key
+                "middle_name": middle_name,
+                "last_name": last_name,
+                "key": key,
+                "email": email
             }
         }
     });
-    return newMaestro
+    return newMaestro;
 }

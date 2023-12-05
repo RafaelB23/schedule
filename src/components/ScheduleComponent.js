@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Button from '@mui/material/Button'
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ScheduleTable from "./ScheduleTable";
+import { Typography, DialogActions, ToggleButtonGroup, ToggleButton, Button } from "@mui/material";
 
 const setValues = () => {
   const xValues = [
@@ -18,7 +16,7 @@ const setValues = () => {
 
   return { xValues, yValues };
 };
-const SchoolSchedule = () => {
+const SchoolSchedule = ({ handleCloseDialog, handleFormSubmit, dialogState }) => {
   const initialSelectedCells = {};
   const { xValues, yValues } = setValues();
   xValues.forEach((x) => {
@@ -47,7 +45,7 @@ const SchoolSchedule = () => {
 
   const generateJSON = () => {
     const schedule = selectedCells;
-  
+
     // Mapeo de días de la semana a números
     const dayToNumber = {
       "Lunes": 1,
@@ -57,7 +55,7 @@ const SchoolSchedule = () => {
       "Viernes": 5,
       "Sábado": 6,
     };
-  
+
     // Mapeo de horas a números
     const hourToNumber = {
       "M1": 1,
@@ -79,16 +77,16 @@ const SchoolSchedule = () => {
       "N5": 17,
       "N6": 18,
     };
-  
+
     const colorsMap = {
       "green": 1,
       "orange": 0,
       "red": -1,
     };
-  
+
     // Crear una matriz de objetos para ordenar los valores
     const orderedSchedule = [];
-  
+
     // Convertir el objeto de horario en una matriz de objetos
     for (const key in schedule) {
       if (schedule.hasOwnProperty(key)) {
@@ -101,7 +99,7 @@ const SchoolSchedule = () => {
         orderedSchedule.push({ dayNumber, hourNumber, value });
       }
     }
-  
+
     // Ordenar la matriz por día y hora
     orderedSchedule.sort((a, b) => {
       if (a.dayNumber === b.dayNumber) {
@@ -109,17 +107,17 @@ const SchoolSchedule = () => {
       }
       return a.dayNumber - b.dayNumber;
     });
-  
+
     // Crear el objeto JSON ordenado
     const jsonData = orderedSchedule.map((item) => ({
       Dia: item.dayNumber,
       Hora: item.hourNumber,
       Valor: item.value,
     }));
-    console.log(jsonData);
-  
+
     // Actualiza el estado o realiza cualquier otra acción con el objeto JSON
     setValueJson(jsonData);
+    handleFormSubmit({horario: JSON.stringify(jsonData)})
     return jsonData;
   };
 
@@ -141,9 +139,8 @@ const SchoolSchedule = () => {
             <ToggleButton
               key={color.color}
               value={color.color}
-              className={`color-button ${
-                selectedColor === color.color ? "selected" : ""
-              }`}
+              className={`color-button ${selectedColor === color.color ? "selected" : ""
+                }`}
               style={{
                 backgroundColor: color.color,
                 color: "white", // Letras blancas
@@ -188,19 +185,24 @@ const SchoolSchedule = () => {
               <tr key={y}>
                 <td className="time-cell">{y}</td>
                 {xValues.map((x) => (
-                    <td
-                      key={`${x}${y}`}
-                      className={`schedule-cell ${
-                        selectedCells[`${x}${y}`] || ""
+                  <td
+                    key={`${x}${y}`}
+                    className={`schedule-cell ${selectedCells[`${x}${y}`] || ""
                       }`}
-                      onClick={() => handleCellClick(x, y)}
-                    ></td>
+                    onClick={() => handleCellClick(x, y)}
+                  ></td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
-        <Button onClick={generateJSON}>Generar Tabla</Button>
+        {/* <Button onClick={generateJSON}>Generar Tabla</Button> */}
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancelar</Button>
+          <Button onClick={generateJSON}>
+            {dialogState ? 'Guardar' : 'Siguiente'}
+          </Button>
+        </DialogActions>
         <ScheduleTable data={valueJson} />
         {/* <p>{valueCsv}</p> */}
       </div>
@@ -209,7 +211,8 @@ const SchoolSchedule = () => {
 
   return (
     <div className="schedule-container">
-      <h1 className="text-3xl font-bold p-10">Horario Escolar</h1>{" "}
+      <Typography className="text-center pb-4" component={'div'} variant="h6">Horario Escolar</Typography>
+      {/* <h1 className="text-3xl font-bold p-10">Horario Escolar</h1>{" "} */}
       {/* Título en español */}
       {renderSchedule()}
     </div>

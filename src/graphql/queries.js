@@ -1,23 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getHorario = /* GraphQL */ `
-  query GetHorario($id: ID!) {
-    getHorario(id: $id) {
+export const getMateriaMaestro = /* GraphQL */ `
+  query GetMateriaMaestro($id: ID!) {
+    getMateriaMaestro(id: $id) {
       id
-      schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
+      fMateria {
         id
         materia_key
         name
@@ -27,10 +15,99 @@ export const getHorario = /* GraphQL */ `
         updatedAt
         __typename
       }
+      fMaestro {
+        id
+        name
+        middle_name
+        last_name
+        key
+        email
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
+      materiaMaestroFMateriaId
+      materiaMaestroFMaestroId
+      __typename
+    }
+  }
+`;
+export const listMateriaMaestros = /* GraphQL */ `
+  query ListMateriaMaestros(
+    $filter: ModelMateriaMaestroFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMateriaMaestros(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        createdAt
+        updatedAt
+        materiaMaestroFMateriaId
+        materiaMaestroFMaestroId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getMaestro = /* GraphQL */ `
+  query GetMaestro($id: ID!) {
+    getMaestro(id: $id) {
+      id
+      name
+      middle_name
+      last_name
+      key
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listMaestros = /* GraphQL */ `
+  query ListMaestros(
+    $filter: ModelMaestroFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMaestros(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        middle_name
+        last_name
+        key
+        email
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getHorario = /* GraphQL */ `
+  query GetHorario($id: ID!) {
+    getHorario(id: $id) {
+      id
+      schedule
+      fMateriaMaestro {
+        id
+        createdAt
+        updatedAt
+        materiaMaestroFMateriaId
+        materiaMaestroFMaestroId
+        __typename
+      }
+      createdAt
+      updatedAt
+      horarioFMateriaMaestroId
       __typename
     }
   }
@@ -47,8 +124,7 @@ export const listHorarios = /* GraphQL */ `
         schedule
         createdAt
         updatedAt
-        horarioMaestroId
-        horarioMateriaId
+        horarioFMateriaMaestroId
         __typename
       }
       nextToken
@@ -83,44 +159,6 @@ export const listMaterias = /* GraphQL */ `
         name
         lenguage
         modality
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getMaestro = /* GraphQL */ `
-  query GetMaestro($id: ID!) {
-    getMaestro(id: $id) {
-      id
-      name
-      lastName
-      level
-      lenguage
-      maestro_key
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listMaestros = /* GraphQL */ `
-  query ListMaestros(
-    $filter: ModelMaestroFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMaestros(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
         createdAt
         updatedAt
         __typename

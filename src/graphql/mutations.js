@@ -1,26 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createHorario = /* GraphQL */ `
-  mutation CreateHorario(
-    $input: CreateHorarioInput!
-    $condition: ModelHorarioConditionInput
+export const createMateriaMaestro = /* GraphQL */ `
+  mutation CreateMateriaMaestro(
+    $input: CreateMateriaMaestroInput!
+    $condition: ModelMateriaMaestroConditionInput
   ) {
-    createHorario(input: $input, condition: $condition) {
+    createMateriaMaestro(input: $input, condition: $condition) {
       id
-      schedule
-      maestro {
-        id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
-        createdAt
-        updatedAt
-        __typename
-      }
-      materia {
+      fMateria {
         id
         materia_key
         name
@@ -30,10 +18,170 @@ export const createHorario = /* GraphQL */ `
         updatedAt
         __typename
       }
+      fMaestro {
+        id
+        name
+        middle_name
+        last_name
+        key
+        email
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
+      materiaMaestroFMateriaId
+      materiaMaestroFMaestroId
+      __typename
+    }
+  }
+`;
+export const updateMateriaMaestro = /* GraphQL */ `
+  mutation UpdateMateriaMaestro(
+    $input: UpdateMateriaMaestroInput!
+    $condition: ModelMateriaMaestroConditionInput
+  ) {
+    updateMateriaMaestro(input: $input, condition: $condition) {
+      id
+      fMateria {
+        id
+        materia_key
+        name
+        lenguage
+        modality
+        createdAt
+        updatedAt
+        __typename
+      }
+      fMaestro {
+        id
+        name
+        middle_name
+        last_name
+        key
+        email
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      materiaMaestroFMateriaId
+      materiaMaestroFMaestroId
+      __typename
+    }
+  }
+`;
+export const deleteMateriaMaestro = /* GraphQL */ `
+  mutation DeleteMateriaMaestro(
+    $input: DeleteMateriaMaestroInput!
+    $condition: ModelMateriaMaestroConditionInput
+  ) {
+    deleteMateriaMaestro(input: $input, condition: $condition) {
+      id
+      fMateria {
+        id
+        materia_key
+        name
+        lenguage
+        modality
+        createdAt
+        updatedAt
+        __typename
+      }
+      fMaestro {
+        id
+        name
+        middle_name
+        last_name
+        key
+        email
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      materiaMaestroFMateriaId
+      materiaMaestroFMaestroId
+      __typename
+    }
+  }
+`;
+export const createMaestro = /* GraphQL */ `
+  mutation CreateMaestro(
+    $input: CreateMaestroInput!
+    $condition: ModelMaestroConditionInput
+  ) {
+    createMaestro(input: $input, condition: $condition) {
+      id
+      name
+      middle_name
+      last_name
+      key
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateMaestro = /* GraphQL */ `
+  mutation UpdateMaestro(
+    $input: UpdateMaestroInput!
+    $condition: ModelMaestroConditionInput
+  ) {
+    updateMaestro(input: $input, condition: $condition) {
+      id
+      name
+      middle_name
+      last_name
+      key
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteMaestro = /* GraphQL */ `
+  mutation DeleteMaestro(
+    $input: DeleteMaestroInput!
+    $condition: ModelMaestroConditionInput
+  ) {
+    deleteMaestro(input: $input, condition: $condition) {
+      id
+      name
+      middle_name
+      last_name
+      key
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createHorario = /* GraphQL */ `
+  mutation CreateHorario(
+    $input: CreateHorarioInput!
+    $condition: ModelHorarioConditionInput
+  ) {
+    createHorario(input: $input, condition: $condition) {
+      id
+      schedule
+      fMateriaMaestro {
+        id
+        createdAt
+        updatedAt
+        materiaMaestroFMateriaId
+        materiaMaestroFMaestroId
+        __typename
+      }
+      createdAt
+      updatedAt
+      horarioFMateriaMaestroId
       __typename
     }
   }
@@ -46,31 +194,17 @@ export const updateHorario = /* GraphQL */ `
     updateHorario(input: $input, condition: $condition) {
       id
       schedule
-      maestro {
+      fMateriaMaestro {
         id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
         createdAt
         updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
+        materiaMaestroFMateriaId
+        materiaMaestroFMaestroId
         __typename
       }
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
+      horarioFMateriaMaestroId
       __typename
     }
   }
@@ -83,31 +217,17 @@ export const deleteHorario = /* GraphQL */ `
     deleteHorario(input: $input, condition: $condition) {
       id
       schedule
-      maestro {
+      fMateriaMaestro {
         id
-        name
-        lastName
-        level
-        lenguage
-        maestro_key
         createdAt
         updatedAt
-        __typename
-      }
-      materia {
-        id
-        materia_key
-        name
-        lenguage
-        modality
-        createdAt
-        updatedAt
+        materiaMaestroFMateriaId
+        materiaMaestroFMaestroId
         __typename
       }
       createdAt
       updatedAt
-      horarioMaestroId
-      horarioMateriaId
+      horarioFMateriaMaestroId
       __typename
     }
   }
@@ -157,60 +277,6 @@ export const deleteMateria = /* GraphQL */ `
       name
       lenguage
       modality
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createMaestro = /* GraphQL */ `
-  mutation CreateMaestro(
-    $input: CreateMaestroInput!
-    $condition: ModelMaestroConditionInput
-  ) {
-    createMaestro(input: $input, condition: $condition) {
-      id
-      name
-      lastName
-      level
-      lenguage
-      maestro_key
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateMaestro = /* GraphQL */ `
-  mutation UpdateMaestro(
-    $input: UpdateMaestroInput!
-    $condition: ModelMaestroConditionInput
-  ) {
-    updateMaestro(input: $input, condition: $condition) {
-      id
-      name
-      lastName
-      level
-      lenguage
-      maestro_key
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteMaestro = /* GraphQL */ `
-  mutation DeleteMaestro(
-    $input: DeleteMaestroInput!
-    $condition: ModelMaestroConditionInput
-  ) {
-    deleteMaestro(input: $input, condition: $condition) {
-      id
-      name
-      lastName
-      level
-      lenguage
-      maestro_key
       createdAt
       updatedAt
       __typename

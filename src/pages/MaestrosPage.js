@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMaestroContext } from "../contexts/maestroContext"
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
-import { fmaestroApi } from "../apis/Api";
+// import { fmaestroApi } from "../apis/Api";
 
 export function MaestrosPage() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route])
@@ -17,9 +17,9 @@ export function MaestrosPage() {
   const handleForm = async (data) => {
     setIsLoading(true)
     context.updateFormMaestro(data)
-    const [name, apell1, apell2] = data.nameProfesor.split(' ')
+    // const [name, apell1, apell2] = data.nameProfesor.split(' ')
     try {
-      await fmaestroApi(name, apell1 + ' ' + apell2, data.level, data.lenguage, data.noProfesor)
+      // await fmaestroApi(name, apell1 + ' ' + apell2, data.level, data.lenguage, data.noProfesor)
       navigate("/form-materias");
       setIsLoading(false)
     }catch(err){
