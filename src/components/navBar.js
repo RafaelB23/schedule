@@ -16,10 +16,6 @@ export default function NavBar() {
                     </Link>
                 </Typography>
                 {user && (
-                    // <IconButton color="inherit" onClick={() => signOut()}>
-                    //     <span style={{ marginLeft: '8px' }}>Cerrar Sesión</span>
-
-                    // </IconButton>
                     <Button
                         component="label"
                         variant="text"
@@ -31,7 +27,7 @@ export default function NavBar() {
                         style={{ 
                             color: 'white',
                             textTransform: 'none' 
-                        }} // Agrega el estilo para el color del texto
+                        }}
                     >
                         Cerrar Sesión
                     </Button>

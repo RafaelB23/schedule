@@ -11,6 +11,7 @@ import { I18n } from 'aws-amplify';
 // import { useNavigate } from 'react-router-dom';
 // import { useEffect } from 'react';
 import AuthController from './authController';
+// import { Dashboard } from '../../pages/Dashboard';
 
 I18n.putVocabularies(translations);
 I18n.setLanguage('es');
@@ -150,6 +151,7 @@ export default function AuthComponent() {
                     formFields={formFields}
                 >
                     {/* <HomePage /> */}
+                    {/* <Dashboard/> */}
                     <AuthController/>
                 </Authenticator>
             </ThemeProvider>

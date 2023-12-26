@@ -1,7 +1,7 @@
 import { API } from "aws-amplify";
-import { createMateria } from '../graphql/mutations';
+import { createMateria, deleteMateria } from '../graphql/mutations';
 
-export default async function materiaApi(key, name, lenguaje, modality){
+export async function createMateriaApi(key, name, lenguaje, modality){
     const newMateria = await API.graphql({
         query: createMateria,
         variables: {
@@ -14,4 +14,16 @@ export default async function materiaApi(key, name, lenguaje, modality){
         }
     });
     return newMateria
+}
+
+export async function deleteMateriaApi(materiaId){
+    const cDeleteMateria = await API.graphql({
+        query: deleteMateria,
+        variables: {
+            input: {
+                "id": materiaId
+            }
+        }
+    })
+    return cDeleteMateria.data?.deleteMateria
 }

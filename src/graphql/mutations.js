@@ -16,6 +16,7 @@ export const createMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -27,12 +28,14 @@ export const createMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -52,6 +55,7 @@ export const updateMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -63,12 +67,14 @@ export const updateMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -88,6 +94,7 @@ export const deleteMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -99,12 +106,14 @@ export const deleteMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -123,6 +132,7 @@ export const createMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -141,6 +151,7 @@ export const updateMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -159,6 +170,7 @@ export const deleteMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -177,11 +189,13 @@ export const createHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
@@ -200,11 +214,13 @@ export const updateHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
@@ -223,11 +239,13 @@ export const deleteHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
@@ -245,6 +263,7 @@ export const createMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -262,6 +281,7 @@ export const updateMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -279,6 +299,7 @@ export const deleteMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

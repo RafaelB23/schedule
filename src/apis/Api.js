@@ -1,20 +1,32 @@
-import horarioApi from './horarioApi'
+import { createHorarioApi, deleteHorarioApi } from './horarioApi'
 import maestroApi from './maestroApi'
-import materiaApi from './materiaApi'
-import materiaMaestroApi from './materiaMaestroApi'
+import {createMateriaApi, deleteMateriaApi} from './materiaApi'
+import { createMateriaMaestroApi, deleteMateriaMaestroApi } from './materiaMaestroApi'
 
 export function fmaestroApi(id, key, name, middle_name, last_name, email) {
     return maestroApi(id, key, name, middle_name, last_name, email)
 }
 
-export function fmateriaApi(key, name, lenguaje, modality) {
-    return materiaApi(key, name, lenguaje, modality)
+export function fcreateMateriaApi(key, name, lenguaje, modality) {
+    return createMateriaApi(key, name, lenguaje, modality)
+}
+export function fdeleteMateriaApi(materiaId){
+    return deleteMateriaApi(materiaId)
 }
 
-export function fmateriaMaestroApi(fMateriaId, fMaestroId) {
-    return materiaMaestroApi(fMateriaId, fMaestroId)
+
+export function fcreateHorarioApi(schedule, materiaMaestroId) {
+    return createHorarioApi(schedule, materiaMaestroId)
 }
 
-export function fhorarioApi(schedule, materiaMaestroId) {
-    return horarioApi(schedule, materiaMaestroId)
+export function fdeleteHorarioApi(scheduleId){
+    return deleteHorarioApi(scheduleId)
+}
+
+export function fcreateMateriaMaestroApi(fMateriaId, fMaestroId) {
+    return createMateriaMaestroApi(fMateriaId, fMaestroId)
+}
+
+export function fdeleteMateriaMaestroApi(materiaMaestroId){
+    return deleteMateriaMaestroApi(materiaMaestroId)
 }

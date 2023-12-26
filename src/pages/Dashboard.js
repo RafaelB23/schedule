@@ -1,4 +1,4 @@
-import { Container, Snackbar, Alert } from '@mui/material';
+import { Container, Snackbar, Alert, Typography } from '@mui/material';
 import MateriasDashboard from '../components/Dashboard/GridMateriaComponent';
 import { useEffect, useState } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
@@ -26,25 +26,31 @@ export function Dashboard() {
         setOpen(false);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (route === 'authenticated') {
-            try{
-                // console.log(user)
+            try {
                 setAttributes(user?.attributes)
-            }catch(err){
+            } catch (err) {
+                console.log(err)
                 navigate('/auth')
             }
-          }
-    },[user, route, navigate])
+        } else {
+            navigate('/auth')
+        }
+    }, [user, route, navigate])
     return (
         <div className="App">
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={alertStatus} sx={{ width: '100%' }}>
                     {alertMessage}
                 </Alert>
             </Snackbar>
             <Container className="m-6" maxWidth="lg" minwidth='xs'>
-                <MateriasDashboard userData={attributes} handlerAlert={handleClick}/>
+                {route === 'authenticated' ?
+                    <MateriasDashboard userData={attributes} handlerAlert={handleClick} /> :
+                    <Typography variant="h6" style={{ flex: 1 }}>
+                        No auth
+                    </Typography>}
             </Container>
         </div>
     )

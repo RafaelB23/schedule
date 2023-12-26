@@ -8,7 +8,7 @@ import { fmaestroApi } from '../../apis/Api';
 
 export default function AuthController() {
     async function fFindMaestro(user) {
-        try {
+        try {          
           const foundMaestroResponse = await API.graphql({
             query: listMaestros,
             variables: {
@@ -19,9 +19,10 @@ export default function AuthController() {
               }
             }
           });
+          // console.log(foundMaestroResponse)
       
           if (foundMaestroResponse.data.listMaestros.items.length !== 0) {
-            console.log('Maestro encontrado:', foundMaestroResponse.data.listMaestros.items[0]);
+            // console.log('Maestro encontrado:', foundMaestroResponse.data.listMaestros.items[0]);
             return { found: true, maestro: foundMaestroResponse.data.listMaestros.items[0] };
           } else {
             const createdMaestroResponse = await fmaestroApi(
@@ -45,6 +46,7 @@ export default function AuthController() {
 
     const navigate = useNavigate()
     const { route, user } = useAuthenticator((context) => [context.route, context.user])
+    // console.log(user)
     useEffect(() => {
         if (route === 'authenticated') {
             // {/* Guardar Maestro */ }

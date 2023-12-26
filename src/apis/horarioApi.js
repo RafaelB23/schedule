@@ -1,7 +1,7 @@
 import { API } from 'aws-amplify';
-import { createHorario } from '../graphql/mutations';
+import { createHorario, deleteHorario } from '../graphql/mutations';
 
-export default async function horarioApi(schedule, materiamateriaMaestroIdId) {
+export async function createHorarioApi(schedule, materiamateriaMaestroIdId) {
   const newHorario = await API.graphql({
     query: createHorario,
     variables: {
@@ -12,4 +12,16 @@ export default async function horarioApi(schedule, materiamateriaMaestroIdId) {
     }
   });
   return newHorario;
+}
+
+export async function deleteHorarioApi(scheduleId){
+  const cDeleteHorario = await API.graphql({
+    query: deleteHorario,
+    variables: {
+      input: {
+        "id": scheduleId
+      }
+    }
+  })
+  return cDeleteHorario.data?.deleteHorario
 }

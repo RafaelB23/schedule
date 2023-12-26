@@ -14,11 +14,14 @@
     "categories": {
       "auth": {
         "schedulefime": {
-          "nativeClientId": "224o7ks4iuh06k7rll5jsaf8vm",
-          "userPoolId": "us-east-1_Dro4X0aAX",
-          "userPoolName": "users_dev",
-          "webClientId": "224o7ks4iuh06k7rll5jsaf8vm"
+          "nativeClientId": "3tpv10n5fcct2a98gf0diul74t",
+          "userPoolId": "us-east-1_34SBAyklJ",
+          "userPoolName": "fime_users_dev_122023",
+          "webClientId": "3tpv10n5fcct2a98gf0diul74t"
         }
+      },
+      "api": {
+        "schedulefime": {}
       }
     }
   }

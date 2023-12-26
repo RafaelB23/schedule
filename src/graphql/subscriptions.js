@@ -4,8 +4,9 @@
 export const onCreateMateriaMaestro = /* GraphQL */ `
   subscription OnCreateMateriaMaestro(
     $filter: ModelSubscriptionMateriaMaestroFilterInput
+    $owner: String
   ) {
-    onCreateMateriaMaestro(filter: $filter) {
+    onCreateMateriaMaestro(filter: $filter, owner: $owner) {
       id
       fMateria {
         id
@@ -15,6 +16,7 @@ export const onCreateMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -26,12 +28,14 @@ export const onCreateMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -39,8 +43,9 @@ export const onCreateMateriaMaestro = /* GraphQL */ `
 export const onUpdateMateriaMaestro = /* GraphQL */ `
   subscription OnUpdateMateriaMaestro(
     $filter: ModelSubscriptionMateriaMaestroFilterInput
+    $owner: String
   ) {
-    onUpdateMateriaMaestro(filter: $filter) {
+    onUpdateMateriaMaestro(filter: $filter, owner: $owner) {
       id
       fMateria {
         id
@@ -50,6 +55,7 @@ export const onUpdateMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -61,12 +67,14 @@ export const onUpdateMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -74,8 +82,9 @@ export const onUpdateMateriaMaestro = /* GraphQL */ `
 export const onDeleteMateriaMaestro = /* GraphQL */ `
   subscription OnDeleteMateriaMaestro(
     $filter: ModelSubscriptionMateriaMaestroFilterInput
+    $owner: String
   ) {
-    onDeleteMateriaMaestro(filter: $filter) {
+    onDeleteMateriaMaestro(filter: $filter, owner: $owner) {
       id
       fMateria {
         id
@@ -85,6 +94,7 @@ export const onDeleteMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -96,19 +106,24 @@ export const onDeleteMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
 `;
 export const onCreateMaestro = /* GraphQL */ `
-  subscription OnCreateMaestro($filter: ModelSubscriptionMaestroFilterInput) {
-    onCreateMaestro(filter: $filter) {
+  subscription OnCreateMaestro(
+    $filter: ModelSubscriptionMaestroFilterInput
+    $owner: String
+  ) {
+    onCreateMaestro(filter: $filter, owner: $owner) {
       id
       name
       middle_name
@@ -117,13 +132,17 @@ export const onCreateMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateMaestro = /* GraphQL */ `
-  subscription OnUpdateMaestro($filter: ModelSubscriptionMaestroFilterInput) {
-    onUpdateMaestro(filter: $filter) {
+  subscription OnUpdateMaestro(
+    $filter: ModelSubscriptionMaestroFilterInput
+    $owner: String
+  ) {
+    onUpdateMaestro(filter: $filter, owner: $owner) {
       id
       name
       middle_name
@@ -132,13 +151,17 @@ export const onUpdateMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteMaestro = /* GraphQL */ `
-  subscription OnDeleteMaestro($filter: ModelSubscriptionMaestroFilterInput) {
-    onDeleteMaestro(filter: $filter) {
+  subscription OnDeleteMaestro(
+    $filter: ModelSubscriptionMaestroFilterInput
+    $owner: String
+  ) {
+    onDeleteMaestro(filter: $filter, owner: $owner) {
       id
       name
       middle_name
@@ -147,13 +170,17 @@ export const onDeleteMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onCreateHorario = /* GraphQL */ `
-  subscription OnCreateHorario($filter: ModelSubscriptionHorarioFilterInput) {
-    onCreateHorario(filter: $filter) {
+  subscription OnCreateHorario(
+    $filter: ModelSubscriptionHorarioFilterInput
+    $owner: String
+  ) {
+    onCreateHorario(filter: $filter, owner: $owner) {
       id
       schedule
       fMateriaMaestro {
@@ -162,18 +189,23 @@ export const onCreateHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
 `;
 export const onUpdateHorario = /* GraphQL */ `
-  subscription OnUpdateHorario($filter: ModelSubscriptionHorarioFilterInput) {
-    onUpdateHorario(filter: $filter) {
+  subscription OnUpdateHorario(
+    $filter: ModelSubscriptionHorarioFilterInput
+    $owner: String
+  ) {
+    onUpdateHorario(filter: $filter, owner: $owner) {
       id
       schedule
       fMateriaMaestro {
@@ -182,18 +214,23 @@ export const onUpdateHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
 `;
 export const onDeleteHorario = /* GraphQL */ `
-  subscription OnDeleteHorario($filter: ModelSubscriptionHorarioFilterInput) {
-    onDeleteHorario(filter: $filter) {
+  subscription OnDeleteHorario(
+    $filter: ModelSubscriptionHorarioFilterInput
+    $owner: String
+  ) {
+    onDeleteHorario(filter: $filter, owner: $owner) {
       id
       schedule
       fMateriaMaestro {
@@ -202,18 +239,23 @@ export const onDeleteHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
 `;
 export const onCreateMateria = /* GraphQL */ `
-  subscription OnCreateMateria($filter: ModelSubscriptionMateriaFilterInput) {
-    onCreateMateria(filter: $filter) {
+  subscription OnCreateMateria(
+    $filter: ModelSubscriptionMateriaFilterInput
+    $owner: String
+  ) {
+    onCreateMateria(filter: $filter, owner: $owner) {
       id
       materia_key
       name
@@ -221,13 +263,17 @@ export const onCreateMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateMateria = /* GraphQL */ `
-  subscription OnUpdateMateria($filter: ModelSubscriptionMateriaFilterInput) {
-    onUpdateMateria(filter: $filter) {
+  subscription OnUpdateMateria(
+    $filter: ModelSubscriptionMateriaFilterInput
+    $owner: String
+  ) {
+    onUpdateMateria(filter: $filter, owner: $owner) {
       id
       materia_key
       name
@@ -235,13 +281,17 @@ export const onUpdateMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteMateria = /* GraphQL */ `
-  subscription OnDeleteMateria($filter: ModelSubscriptionMateriaFilterInput) {
-    onDeleteMateria(filter: $filter) {
+  subscription OnDeleteMateria(
+    $filter: ModelSubscriptionMateriaFilterInput
+    $owner: String
+  ) {
+    onDeleteMateria(filter: $filter, owner: $owner) {
       id
       materia_key
       name
@@ -249,6 +299,7 @@ export const onDeleteMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

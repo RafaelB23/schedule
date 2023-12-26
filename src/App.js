@@ -4,12 +4,12 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-// import { HomePage } from "./pages/HomePage";
+import { HomePage } from "./pages/HomePage";
 import { Dashboard } from "./pages/Dashboard";
 import { MaestrosPage } from "./pages/MaestrosPage";
 import { MateriasPage } from "./pages/MateriasPage";
 import { HorarioPage } from "./pages/HorarioPage";
-import MateriaCreateForm from './ui-components/MateriaCreateForm'
+// import MateriaCreateForm from './ui-components/MateriaCreateForm'
 
 // Auth Pages
 import { Amplify, } from "aws-amplify";
@@ -50,7 +50,7 @@ function App() {
             <Route path="/form-profesores" element={<MaestrosPage />} />
             <Route path="/form-materias" element={<MateriasPage />} />
             <Route path="/form-horario" element={<HorarioPage />} />
-            <Route path="/test" element={<MateriaCreateForm/>}/>
+            {/* <Route path="/test" element={<MateriaCreateForm/>}/> */}
             {/* Ruta 404 (Not Found) */}
             <Route path='*' element={<NotFoundPage />} />
           </Routes>

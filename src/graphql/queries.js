@@ -13,6 +13,7 @@ export const getMateriaMaestro = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       fMaestro {
@@ -24,12 +25,14 @@ export const getMateriaMaestro = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       createdAt
       updatedAt
       materiaMaestroFMateriaId
       materiaMaestroFMaestroId
+      owner
       __typename
     }
   }
@@ -47,6 +50,7 @@ export const listMateriaMaestros = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       nextToken
@@ -65,6 +69,7 @@ export const getMaestro = /* GraphQL */ `
       email
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -85,6 +90,7 @@ export const listMaestros = /* GraphQL */ `
         email
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -103,11 +109,13 @@ export const getHorario = /* GraphQL */ `
         updatedAt
         materiaMaestroFMateriaId
         materiaMaestroFMaestroId
+        owner
         __typename
       }
       createdAt
       updatedAt
       horarioFMateriaMaestroId
+      owner
       __typename
     }
   }
@@ -125,6 +133,7 @@ export const listHorarios = /* GraphQL */ `
         createdAt
         updatedAt
         horarioFMateriaMaestroId
+        owner
         __typename
       }
       nextToken
@@ -142,6 +151,7 @@ export const getMateria = /* GraphQL */ `
       modality
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -161,6 +171,7 @@ export const listMaterias = /* GraphQL */ `
         modality
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken

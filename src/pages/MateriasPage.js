@@ -7,7 +7,7 @@ import {useMateriaContext} from "../contexts/materiaContext"
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { fmateriaApi } from "../apis/Api";
+import { fcreateMateriaApi } from "../apis/Api";
 
 export function MateriasPage() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export function MateriasPage() {
     setIsLoading(true)
     contextMateria.updateFormMateria(data)
     try{
-      await fmateriaApi(data.claveMateria, data.nameMateria, data.idioma, data.modalidad)
+      await fcreateMateriaApi(data.claveMateria, data.nameMateria, data.idioma, data.modalidad)
       navigate("/form-horario");
       setIsLoading(false)
     }catch(err){

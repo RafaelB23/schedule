@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import MateriaCard from './cardMateriaComponent';
 import DialogForm from './DialogForm';
-import { fhorarioApi, fmateriaApi, fmateriaMaestroApi } from '../../apis/Api';
+import { fcreateHorarioApi, fcreateMateriaApi, fcreateMateriaMaestroApi } from '../../apis/Api';
 import { getMateriaMaestro, listMateriaMaestros } from '../../graphql/queries';
 import { API } from 'aws-amplify';
 
@@ -17,6 +17,22 @@ export default function MateriasDashboard({ handlerAlert, userData }) {
     const [dialogState, setDialogState] = useState(false)
     const [formData, setFormData] = useState({})
     const [cards, setCards] = useState([])
+
+    const queryMateriaMaestro = async (materiaMaestroId) => {
+        try {
+            const MateriaMaestro =
+                (
+                    await API.graphql({
+                        query: getMateriaMaestro.replaceAll("__typename", ""),
+                        variables: { id: materiaMaestroId },
+                    })
+                )?.data?.getMateriaMaestro
+            // console.log(MateriaMaestro)
+            return MateriaMaestro
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const handleButton = () => {
         setOpenDialog(true);
@@ -27,6 +43,7 @@ export default function MateriasDashboard({ handlerAlert, userData }) {
         setOpenDialog(false);
     };
 
+
     const handleFormSubmit = async (data) => {
         const updatedFormData = { ...formData, ...data };
         console.log('Información del formulario:', data);
@@ -35,24 +52,27 @@ export default function MateriasDashboard({ handlerAlert, userData }) {
         setDialogState(!dialogState)
         if (dialogState) {
             try {
-                const { data: { createMateria: { id: materiaId } }, errorMateria } = await fmateriaApi(updatedFormData.claveMateria, updatedFormData.nameMateria, updatedFormData.idioma, updatedFormData.modalidad)
+                const { data: { createMateria: { id: materiaId } }, errorMateria } = await fcreateMateriaApi(updatedFormData.claveMateria, updatedFormData.nameMateria, updatedFormData.idioma, updatedFormData.modalidad)
                 if (errorMateria) {
                     console.error("Error en la operación MateriaApi:", errorMateria);
                     return { err: errorMateria };
                 }
-                const { data: { createMateriaMaestro: { id: materiaMaestroId } } } = await fmateriaMaestroApi(materiaId, userData.sub)
-                const { errorHorario } = await fhorarioApi(updatedFormData.horario, materiaMaestroId)
-                // await fhorarioApi(updatedFormData.horario, materiaMaestroId)
+                const { data: { createMateriaMaestro: { id: materiaMaestroId } } } = await fcreateMateriaMaestroApi(materiaId, userData.sub)
+                const { errorHorario } = await fcreateHorarioApi(updatedFormData.horario, materiaMaestroId)
+                // await fcreateHorarioApi(updatedFormData.horario, materiaMaestroId)
 
-                // console.log(data)
+                const queryMateriaMaestroResponse = await queryMateriaMaestro(materiaMaestroId)
+                console.log("Materia Agregada")
+                setCards([...cards, queryMateriaMaestroResponse])
                 if (errorHorario) {
                     console.error("Error en la operación HorarioApi:", errorHorario);
                     return { err: errorHorario };
                 }
-                console.log(cards)
-                // setCards(...cards, materiaMaestroId)
+
+                // console.log("Nueva materia agregada", queryMateriaMaestro)
                 handlerAlert('success', 'Registrado correctamente')
             } catch (err) {
+                console.log(err)
                 handlerAlert('error', 'No se pudo registrar')
 
             }
@@ -61,29 +81,40 @@ export default function MateriasDashboard({ handlerAlert, userData }) {
             handleCloseDialog();
         }
     };
-    
+
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const {data: {listMateriaMaestros: { items: result}}} = await API.graphql({
-                    query: listMateriaMaestros,
-                    variables: {
-                        filter: {
-                            materiaMaestroFMaestroId: {
-                              eq: userData.sub
+            if (userData) {
+                try {
+                    const result = (
+                        await API.graphql({
+                            query: listMateriaMaestros,
+                            variables: {
+                                filter: {
+                                    materiaMaestroFMaestroId: {
+                                        eq: userData.sub
+                                    }
+                                }
                             }
-                          }
-                    }
-                });
-                setCards(result);
-                console.log(result)
-            } catch (error) {
-                console.error('Error al obtener la información:', error);
+                        })
+                    )?.data?.listMateriaMaestros?.items;
+
+                    const promises = result.map(item => queryMateriaMaestro(item.id));
+                    const resolvedData = await Promise.all(promises);
+
+                    // console.log(resolvedData);
+
+                    setCards(resolvedData);
+                } catch (error) {
+                    console.error('Error al obtener la información:', error);
+                }
             }
         };
+
         fetchData();
     }, [userData]);
+
     return (
         <Grid container className="gap-4">
             <Grid item xs={12}>
@@ -108,15 +139,20 @@ export default function MateriasDashboard({ handlerAlert, userData }) {
                         </Grid>
                     </nav>
                     <Grid container spacing={2}>
-                        <MateriaCard />
-                        {/* {cards.map((item)=>
-                            <MateriaCard data={item}/>
-                        )} */}
-                        {/* <MateriaCard />
-                        <MateriaCard />
-                        <MateriaCard />
-                        <MateriaCard /> */}
+                        {cards.length !== 0 ? (
+                            cards.map((item, index) => (
+                                <MateriaCard key={index} propertyInfo={item} updateList={setCards} list={cards} handlerAlert={handlerAlert}/>
+                            ))
+                        ) : (
+                            <Typography
+                                variant="subtitle"
+                                className="flex items-center justify-center py-6 w-full"
+                            >
+                                No hay registros
+                            </Typography>
+                        )}
                     </Grid>
+
                 </Paper>
             </Grid>
             <DialogForm
